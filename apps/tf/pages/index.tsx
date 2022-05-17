@@ -13,8 +13,8 @@ export const Index = () => (
         <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
           I&apos;m a terminally curious tinkerer with a passion for technology,
           community, web3/blockchain,
-          self-[improvement,resiliency,education,...], and something new every
-          day.
+          self-[improvement,resiliency,education,...], and learning something
+          new every day.
         </p>
 
         <p className="mt-4 max-w-2xl text-lg text-gray-500 lg:mx-auto">
