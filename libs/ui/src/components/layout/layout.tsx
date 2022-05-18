@@ -140,7 +140,7 @@ export function Layout({ children }: LayoutProps) {
                 </div>
                 <div className="flex px-4 py-2 w-full justify-start">
                   <p className="font-bold mr-2">Theme:</p>
-                  <ThemeButton />
+                  <ThemeButton className="stroke-white dark:stroke-black" />
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -153,7 +153,6 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Static sidebar for desktop */}
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        {/* Sidebar component, swap this element with another sidebar if you like */}
         <div
           className={appendClasses(
             realmColor,
@@ -194,7 +193,7 @@ export function Layout({ children }: LayoutProps) {
             </nav>
             <div className="flex p-4">
               <p className="font-bold mr-2">Theme:</p>
-              <ThemeButton />
+              <ThemeButton className="stroke-white dark:stroke-black" />
             </div>
           </div>
         </div>
@@ -220,9 +219,6 @@ export function Layout({ children }: LayoutProps) {
 
           <div className="flex-1 px-4 flex justify-end">
             <div className="ml-auto flex items-center md:ml-6">
-              {/* <div className="mr-4">
-                <ThemeButton />
-              </div> */}
               {realm === 'web2' ? (
                 <Web2Logo
                   className="w-10"
