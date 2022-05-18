@@ -10,6 +10,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
   presets: [require('../../tailwind-workspace-preset.config.js')],
 };

@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import GlassCard from './glass-card';
+import Container from './container';
 
-describe('GlassCard', () => {
+describe('Container', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<GlassCard />);
+    const { baseElement } = render(<Container />);
     expect(baseElement).toBeTruthy();
   });
 });
