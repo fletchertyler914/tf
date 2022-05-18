@@ -39,7 +39,7 @@ export const Index = () => (
 
         <footer className="h-[80px]">
           <SocialMediaIcons />
-          <div className="flex mt-8 justify-center">
+          <div className="flex my-8 justify-center">
             <p className="font-bold mr-2 dark:text-white">Theme:</p>
             <ThemeButton className="dark:stroke-white stroke-black" />
           </div>
