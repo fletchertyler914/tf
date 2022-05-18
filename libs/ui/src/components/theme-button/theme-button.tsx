@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { MoonIcon, SunIcon } from '@heroicons/react/outline';
+import { appendClasses } from '../../utils';
+export interface ThemeButtonProps {
+  className?: string;
+}
 
-const ThemeButton = () => {
+export const ThemeButton = ({ className }: ThemeButtonProps) => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   useEffect(() => {
     setDarkMode(document.documentElement.classList.contains('dark') ?? false);
@@ -21,9 +24,8 @@ const ThemeButton = () => {
     <button onClick={() => setDarkMode(!darkMode)}>
       {darkMode ? (
         <svg
-          className="w-6 h-6"
+          className={appendClasses(className ?? '', 'w-6 h-6')}
           fill="none"
-          stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -36,9 +38,8 @@ const ThemeButton = () => {
         </svg>
       ) : (
         <svg
-          className="w-6 h-6"
+          className={appendClasses(className ?? '', 'w-6 h-6')}
           fill="none"
-          stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

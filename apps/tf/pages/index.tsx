@@ -1,4 +1,4 @@
-import { Pill, SocialMediaIcons } from '@tf/ui';
+import { Pill, SocialMediaIcons, ThemeButton } from '@tf/ui';
 
 export const Index = () => (
   <div className="py-12 h-full bg-white dark:bg-gray-900 overflow-x-auto">
@@ -37,8 +37,12 @@ export const Index = () => (
           />
         </div>
 
-        <footer className='h-[80px]'>
+        <footer className="h-[80px]">
           <SocialMediaIcons />
+          <div className="flex mt-8 justify-center">
+            <p className="font-bold mr-2 dark:text-white">Theme:</p>
+            <ThemeButton className="dark:stroke-white stroke-black" />
+          </div>
         </footer>
       </div>
     </div>
