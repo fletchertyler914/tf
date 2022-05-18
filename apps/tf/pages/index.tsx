@@ -29,7 +29,7 @@ export const Index = () => (
       </div>
 
       <div className="sm:mt-16 max-h-full">
-        <div className="flex flex-col sm:flex-row items-end sm:items-start h-[60vh] justify-center">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start h-[60vh] justify-center">
           <Pill className="bg-blue-600 hover:bg-blue-800" title="web2" />
           <Pill
             className="bg-red-600 hover:bg-red-800 scale-[60%]"
