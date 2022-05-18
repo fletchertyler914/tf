@@ -1,9 +1,7 @@
 module.exports = {
   content: [],
+  darkMode: 'class',
   theme: {
-    // fontFamily: {
-    //   brand: ['Inter', 'sans-serif'],
-    // },
     extend: {},
   },
   plugins: [],

@@ -13,6 +13,8 @@ import { appendClasses } from '../../utils/helpers';
 import Web2Logo from '../logo/web2-logo';
 import Web3Logo from '../logo/web3-logo';
 import TFLogo from '../logo/tf-logo';
+import { Realm } from '../../utils';
+import ThemeButton from '../theme-button/theme-button';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -27,8 +29,10 @@ export function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
   const routeParts = router.pathname.split('/');
-  const realm = routeParts[1];
-  const realmColor = realm === 'web2' ? 'bg-blue-500' : 'bg-red-500';
+  const realm = [Realm.Web2, Realm.Web3].some((r) => r === routeParts[1])
+    ? (routeParts[1] as Realm)
+    : undefined;
+  const realmColor = realm === Realm.Web2 ? 'bg-blue-500' : 'bg-red-500';
 
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon, current: false },
@@ -36,13 +40,11 @@ export function Layout({ children }: LayoutProps) {
       name: 'About',
       href: '#',
       icon: UsersIcon,
-      current: ['web2', 'web3'].some((r) => r === routeParts[1]),
+      current: true,
     },
     { name: 'Projects', href: '#', icon: FolderIcon, current: false },
     { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   ];
-
-  console.log('router', router);
 
   return (
     <div>
@@ -104,7 +106,10 @@ export function Layout({ children }: LayoutProps) {
                   </div>
                 </Transition.Child>
                 <div className="flex-shrink-0 flex items-center px-4">
-                  <TFLogo className="w-[75%] m-auto " />
+                  <TFLogo
+                    className="w-[75%] m-auto"
+                    fill="fill-white dark:fill-black"
+                  />
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
@@ -115,18 +120,27 @@ export function Layout({ children }: LayoutProps) {
                         className={classNames(
                           item.current
                             ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
-                            : 'text-gray-800 hover:bg-gray-300 dark:text-gray-200 dark:hover:bg-gray-400',
+                            : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
                           'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                         )}
                       >
                         <item.icon
-                          className="mr-4 flex-shrink-0 h-6 w-6 text-black dark:text-white"
+                          className={appendClasses(
+                            item.current
+                              ? 'text-black dark:text-white'
+                              : 'text-white dark:text-black group-hover:text-black',
+                            'mr-4 flex-shrink-0 h-6 w-6'
+                          )}
                           aria-hidden="true"
                         />
                         {item.name}
                       </a>
                     ))}
                   </nav>
+                </div>
+                <div className="flex px-4 py-2 w-full justify-start">
+                  <p className="font-bold mr-2">Theme:</p>
+                  <ThemeButton />
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -147,7 +161,10 @@ export function Layout({ children }: LayoutProps) {
           )}
         >
           <div className="flex items-center flex-shrink-0 px-4">
-            <TFLogo className="w-[75%] m-auto" />
+            <TFLogo
+              className="w-[75%] m-auto"
+              fill="fill-white dark:fill-black"
+            />
           </div>
           <div className="mt-5 flex-1 flex flex-col">
             <nav className="flex-1 px-2 pb-4 space-y-1">
@@ -158,29 +175,43 @@ export function Layout({ children }: LayoutProps) {
                   className={classNames(
                     item.current
                       ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
-                      : 'text-gray-800 hover:bg-gray-300 dark:text-gray-200 dark:hover:bg-gray-400',
-                    'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
+                    'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                   )}
                 >
                   <item.icon
-                    className="mr-3 flex-shrink-0 h-6 w-6 text-black dark:text-white"
+                    className={appendClasses(
+                      item.current
+                        ? 'text-black dark:text-white'
+                        : 'text-white dark:text-black group-hover:text-black',
+                      'mr-4 flex-shrink-0 h-6 w-6'
+                    )}
                     aria-hidden="true"
                   />
                   {item.name}
                 </a>
               ))}
             </nav>
+            <div className="flex p-4">
+              <p className="font-bold mr-2">Theme:</p>
+              <ThemeButton />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Static sidebar for mobile */}
       <div className="md:pl-64 flex flex-col flex-1">
-        <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow-md border-b border-gray-400">
+        <div
+          className={appendClasses(
+            realmColor,
+            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white'
+          )}
+        >
           {/* Menu Toggle */}
           <button
             type="button"
-            className="px-4 border-r-2 border-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-transparent md:hidden"
+            className="px-4 border-r-2 text-white border-white dark:border-black dark:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-transparent md:hidden"
             onClick={() => setSidebarOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>
@@ -189,10 +220,21 @@ export function Layout({ children }: LayoutProps) {
 
           <div className="flex-1 px-4 flex justify-end">
             <div className="ml-auto flex items-center md:ml-6">
+              {/* <div className="mr-4">
+                <ThemeButton />
+              </div> */}
               {realm === 'web2' ? (
-                <Web2Logo className="w-10" invert={true} />
+                <Web2Logo
+                  className="w-10"
+                  fill="dark:fill-black fill-white md:fill-black"
+                  route={Realm.Web3}
+                />
               ) : (
-                <Web3Logo className="w-10" invert={true} />
+                <Web3Logo
+                  className="w-10"
+                  fill="dark:fill-black fill-white md:fill-black"
+                  route={Realm.Web2}
+                />
               )}
             </div>
           </div>

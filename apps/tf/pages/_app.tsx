@@ -1,6 +1,7 @@
 import { Layout } from '@tf/ui';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import './styles.css';
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
@@ -8,7 +9,12 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   const realm = router.pathname.split('/')[1];
 
-  return realm ? <Layout>{component}</Layout> : component;
+  return (
+    <>
+      <Script strategy="beforeInteractive" src="scripts/theme.js"  />
+      {realm ? <Layout>{component}</Layout> : component}
+    </>
+  );
 };
 
 export default CustomApp;
