@@ -28,7 +28,7 @@ export const Index = () => (
         </p>
       </div>
 
-      <div className="sm:mt-16 max-h-full">
+      <div className="sm:mt-16 m-h-full overflow-hidden">
         <div className="flex flex-col sm:flex-row items-center sm:items-start h-[60vh] justify-center">
           <Pill className="bg-blue-600 hover:bg-blue-800" title="web2" />
           <Pill
@@ -37,9 +37,9 @@ export const Index = () => (
           />
         </div>
 
-        <footer className="h-[80px]">
+        <footer className='flex flex-col justify-center h-[100px] justify-evenly'>
           <SocialMediaIcons />
-          <div className="flex my-8 justify-center">
+          <div className="flex justify-center">
             <p className="font-bold mr-2 dark:text-white">Theme:</p>
             <ThemeButton className="dark:stroke-white stroke-black" />
           </div>
