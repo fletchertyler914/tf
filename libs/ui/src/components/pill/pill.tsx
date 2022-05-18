@@ -16,7 +16,7 @@ export const Pill = ({ className, title }: PillProps) => (
     <div
       className={appendClassNames(
         className,
-        'sm:mx-8 p-2 h-40 w-80 flex items-center justify-center rounded-[90px] shadow hover:shadow-xl border border-transparent hover:skew-x-12 scale-[0.9] sm:scale-100'
+        'sm:mx-8 p-2 h-40 w-80 flex items-center justify-center rounded-[90px] shadow hover:shadow-xl border border-transparent hover:skew-x-12 scale-[0.7] sm:scale-100'
       )}
     >
       {title === 'web2' ? (
