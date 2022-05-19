@@ -15,6 +15,8 @@ import Web3Logo from '../logo/web3-logo';
 import TFLogo from '../logo/tf-logo';
 import { Realm } from '../../utils';
 import ThemeButton from '../theme-button/theme-button';
+import SocialMediaIcons from '../social-media-icons/social-media-icons';
+import { RealmLogo } from '@tf/ui';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -219,19 +221,11 @@ export function Layout({ children }: LayoutProps) {
 
           <div className="flex-1 px-4 flex justify-end">
             <div className="ml-auto flex items-center md:ml-6">
-              {realm === 'web2' ? (
-                <Web2Logo
-                  className="w-10"
-                  fill="dark:fill-black fill-white md:fill-black"
-                  route={Realm.Web3}
-                />
-              ) : (
-                <Web3Logo
-                  className="w-10"
-                  fill="dark:fill-black fill-white md:fill-black"
-                  route={Realm.Web2}
-                />
-              )}
+              <RealmLogo
+                className="w-10"
+                fill="dark:fill-black fill-white md:fill-black"
+                realm={realm}
+              />
             </div>
           </div>
         </div>

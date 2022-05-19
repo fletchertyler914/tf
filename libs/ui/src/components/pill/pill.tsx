@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Web2Logo from '../logo/web2-logo';
-import Web3Logo from '../logo/web3-logo';
+import { Realm } from '../../utils';
+import { RealmLogo } from '../logo';
 
 export interface PillProps {
   className?: string;
@@ -19,11 +19,10 @@ export const Pill = ({ className, title }: PillProps) => (
         'sm:mx-8 p-2 h-40 w-80 flex items-center justify-center rounded-[90px] shadow hover:shadow-xl border border-transparent hover:skew-x-12 scale-[0.7] sm:scale-100'
       )}
     >
-      {title === 'web2' ? (
-        <Web2Logo className="w-20" />
-      ) : (
-        <Web3Logo className="w-20" />
-      )}
+      <RealmLogo
+        className="w-20"
+        fill="dark:fill-black fill-white md:fill-black"
+      />
     </div>
   </Link>
 );
