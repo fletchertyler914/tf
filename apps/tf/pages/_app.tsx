@@ -1,4 +1,5 @@
 import { Layout } from '@tf/ui';
+import { SolanaProvider } from '@tf/utils';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
@@ -11,8 +12,10 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Script strategy="beforeInteractive" src="scripts/theme.js"  />
-      {realm ? <Layout>{component}</Layout> : component}
+      <Script strategy="beforeInteractive" src="scripts/theme.js" />
+      <SolanaProvider>
+        {realm ? <Layout>{component}</Layout> : component}
+      </SolanaProvider>
     </>
   );
 };

@@ -4,6 +4,7 @@
   "projects": {
     "tf": "apps/tf",
     "tf-e2e": "apps/tf-e2e",
-    "ui": "libs/ui"
+    "ui": "libs/ui",
+    "utils": "libs/utils"
   }
 }

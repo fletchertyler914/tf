@@ -10,19 +10,14 @@ import {
 } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import { appendClasses } from '../../utils/helpers';
-import Web2Logo from '../logo/web2-logo';
-import Web3Logo from '../logo/web3-logo';
-import TFLogo from '../logo/tf-logo';
 import { Realm } from '../../utils';
 import ThemeButton from '../theme-button/theme-button';
-import SocialMediaIcons from '../social-media-icons/social-media-icons';
-import { RealmLogo } from '@tf/ui';
+import { RealmLogo, TFLogo } from '../logo';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-/* eslint-disable-next-line */
 export interface LayoutProps {
   children: React.ReactNode;
 }
