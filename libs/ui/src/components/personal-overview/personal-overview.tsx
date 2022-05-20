@@ -40,7 +40,7 @@ const Attachment = (
     </div>
     <div className="ml-4 flex-shrink-0">
       <button
-        disabled={realm === Realm.web3 ? !connected : false}
+        disabled={realm === Realm.Web3 ? !connected : false}
         onClick={() => console.log(realm === Realm.Web2 ? 'Download' : 'Mint')}
         className={appendClasses(
           [realmStyles.textColor, realmStyles.hoverTextColor],
