@@ -9,10 +9,10 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
-import { appendClasses } from '../../utils/helpers';
-import { Realm } from '../../utils';
+import { appendClasses } from '@tf/utils';
 import ThemeButton from '../theme-button/theme-button';
 import { RealmLogo, TFLogo } from '../logo';
+import { Realm } from '@tf/data';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');

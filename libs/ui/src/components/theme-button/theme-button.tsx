@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { appendClasses } from '../../utils';
+import { appendClasses } from '@tf/utils';
 export interface ThemeButtonProps {
   className?: string;
 }

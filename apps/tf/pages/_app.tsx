@@ -1,5 +1,5 @@
 import { Layout } from '@tf/ui';
-import { SolanaProvider } from '@tf/utils';
+import { SolanaProvider } from '@tf/providers';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import Script from 'next/script';

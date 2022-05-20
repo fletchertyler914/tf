@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { appendClasses, Realm } from '../../utils';
+import { appendClasses } from '@tf/utils';
+import { Realm } from '@tf/data';
 
 export interface RealmLogoProps {
   className?: string;

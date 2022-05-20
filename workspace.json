@@ -2,6 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "data": "libs/data",
+    "hooks": "libs/hooks",
+    "providers": "libs/providers",
     "tf": "apps/tf",
     "tf-e2e": "apps/tf-e2e",
     "ui": "libs/ui",
