@@ -5,7 +5,7 @@ export interface Web3Props {}
 
 const overviewProps: PersonalOverviewProps = {
   fullName: 'Tyler Fletcher',
-  position: 'Software Engineer',
+  position: 'Fullstack Engineer',
   email: '0xtylerfletcher@gmail.com',
   salary: '$160,000 - $200,000',
   about:
