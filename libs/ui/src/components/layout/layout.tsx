@@ -13,6 +13,8 @@ import { appendClasses } from '@tf/utils';
 import ThemeButton from '../theme-button/theme-button';
 import { RealmLogo, TFLogo } from '../logo';
 import { Realm } from '@tf/data';
+import Link from 'next/link';
+import { useRealm } from '@tf/hooks';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -24,12 +26,8 @@ export interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const router = useRouter();
-  const routeParts = router.pathname.split('/');
-  const realm = [Realm.Web2, Realm.Web3].some((r) => r === routeParts[1])
-    ? (routeParts[1] as Realm)
-    : undefined;
-  const realmColor = realm === Realm.Web2 ? 'bg-blue-500' : 'bg-red-500';
+  const { realm } = useRealm();
+  const realmBgColor = realm === Realm.Web2 ? 'bg-blue-500' : 'bg-red-500';
 
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon, current: false },
@@ -75,7 +73,7 @@ export function Layout({ children }: LayoutProps) {
             >
               <Dialog.Panel
                 className={appendClasses(
-                  realmColor,
+                  realmBgColor,
                   'relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4'
                 )}
               >
@@ -111,27 +109,29 @@ export function Layout({ children }: LayoutProps) {
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
-                            : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                        )}
-                      >
-                        <item.icon
-                          className={appendClasses(
+                      <Link key={item.name} href={item.href} passHref>
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
                             item.current
-                              ? 'text-black dark:text-white'
-                              : 'text-white dark:text-black group-hover:text-black',
-                            'mr-4 flex-shrink-0 h-6 w-6'
+                              ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
+                              : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
+                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                           )}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
+                        >
+                          <item.icon
+                            className={appendClasses(
+                              item.current
+                                ? 'text-black dark:text-white'
+                                : 'text-white dark:text-black group-hover:text-black',
+                              'mr-4 flex-shrink-0 h-6 w-6'
+                            )}
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
@@ -152,7 +152,7 @@ export function Layout({ children }: LayoutProps) {
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         <div
           className={appendClasses(
-            realmColor,
+            realmBgColor,
             'flex flex-col flex-grow pt-5 overflow-y-auto'
           )}
         >
@@ -165,27 +165,29 @@ export function Layout({ children }: LayoutProps) {
           <div className="mt-5 flex-1 flex flex-col">
             <nav className="flex-1 px-2 pb-4 space-y-1">
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
-                      : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
-                    'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                  )}
-                >
-                  <item.icon
-                    className={appendClasses(
+                <Link key={item.name} href={item.href} passHref>
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
                       item.current
-                        ? 'text-black dark:text-white'
-                        : 'text-white dark:text-black group-hover:text-black',
-                      'mr-4 flex-shrink-0 h-6 w-6'
+                        ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
+                        : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
+                      'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                     )}
-                    aria-hidden="true"
-                  />
-                  {item.name}
-                </a>
+                  >
+                    <item.icon
+                      className={appendClasses(
+                        item.current
+                          ? 'text-black dark:text-white'
+                          : 'text-white dark:text-black group-hover:text-black',
+                        'mr-4 flex-shrink-0 h-6 w-6'
+                      )}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </a>
+                </Link>
               ))}
             </nav>
             <div className="flex p-4">
@@ -200,7 +202,7 @@ export function Layout({ children }: LayoutProps) {
       <div className="md:pl-64 flex flex-col flex-1">
         <div
           className={appendClasses(
-            realmColor,
+            realmBgColor,
             'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white'
           )}
         >
@@ -220,13 +222,14 @@ export function Layout({ children }: LayoutProps) {
                 className="w-10"
                 fill="dark:fill-black fill-white md:fill-black"
                 realm={realm}
+                showSwitcher={true}
               />
             </div>
           </div>
         </div>
 
         <main>
-          <div className="py-6">
+          <div className="pb-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400">
               {children}
             </div>

@@ -6,6 +6,7 @@ export interface RealmLogoProps {
   className?: string;
   fill?: string;
   realm?: Realm;
+  showSwitcher?: boolean;
   stroke?: string;
 }
 
@@ -51,17 +52,23 @@ export const Web3Icon = ({ className, fill }: RealmLogoProps) => (
 );
 
 export const RealmIcon = ({ className, fill, realm }: RealmLogoProps) => {
-  if (realm === Realm.Web2)
+  if (realm === Realm.Web2) {
     return <Web2Icon className={className} fill={fill} />;
+  }
   return <Web3Icon className={className} fill={fill} />;
 };
 
-export const RealmLogo = ({ className, fill, realm }: RealmLogoProps) => {
+export const RealmLogo = ({
+  className,
+  fill,
+  realm,
+  showSwitcher,
+}: RealmLogoProps) => {
   const stroke = fill === 'text-white' ? 'stroke-white' : 'stroke-black';
-  const href = `/${realm === Realm.Web2 ? Realm.Web3 : Realm.Web2}`;
-  return realm ? (
-    <Link href={href} passHref>
-      <a href={href} className="flex items-center">
+  const otherRealm = realm === Realm.Web2 ? Realm.Web3 : Realm.Web2;
+  return showSwitcher ? (
+    <Link href="/[realm]" as={`/${otherRealm}`} passHref>
+      <a className="flex items-center">
         <RealmIcon className={className} fill={fill} realm={realm} />
         <RealmSwitchIcon stroke={stroke} />
       </a>

@@ -1,15 +1,16 @@
+import { Realm } from '@tf/data';
 import { appendClasses } from '@tf/utils';
 import Link from 'next/link';
 import { RealmLogo } from '../logo';
 
 export interface PillProps {
   className?: string;
-  title: string;
+  realm: Realm;
   href?: string;
 }
 
-export const Pill = ({ className, title }: PillProps) => (
-  <Link href={'/' + title.toLowerCase()}>
+export const Pill = ({ className, realm }: PillProps) => (
+  <Link href="/[realm]" as={`/${realm}`}>
     <div
       className={appendClasses(
         className ?? '',
@@ -19,6 +20,7 @@ export const Pill = ({ className, title }: PillProps) => (
       <RealmLogo
         className="w-20"
         fill="dark:fill-black fill-white md:fill-black"
+        realm={realm}
       />
     </div>
   </Link>

@@ -1,3 +1,4 @@
+import { Realm } from '@tf/data';
 import { Pill, SocialMediaIcons, ThemeButton } from '@tf/ui';
 
 export const Index = () => (
@@ -30,10 +31,10 @@ export const Index = () => (
     <div className="flex py-8 justify-center">
       <div className="sm:mt-16 m-h-full overflow-hidden justify-between">
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center">
-          <Pill className="bg-blue-600 hover:bg-blue-800" title="web2" />
+          <Pill className="bg-blue-600 hover:bg-blue-800" realm={Realm.Web2} />
           <Pill
             className="bg-red-600 hover:bg-red-800 scale-[60%]"
-            title="web3"
+            realm={Realm.Web3}
           />
         </div>
       </div>

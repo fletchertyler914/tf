@@ -27,7 +27,10 @@ const Attachment = (
   realmStyles: RealmStyle,
   connected: boolean
 ) => (
-  <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+  <li
+    key={attachment.name}
+    className="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
+  >
     <div className="w-0 flex-1 flex items-center">
       <PaperClipIcon
         className="flex-shrink-0 h-5 w-5 text-gray-400"
@@ -70,7 +73,7 @@ export const PersonalOverview = ({
 
   return (
     <div className="bg-white dark:bg-gray-800 shadow border border-gray-400 dark:border-gray-200 overflow-hidden sm:rounded-lg">
-      <div className="px-4 py-5 sm:px-6">
+      <div className="px-2 py-5 sm:px-6">
         <div className="flex">
           <div className="flex flex-1 flex-col">
             <h3 className="text-lg leading-6 font-bold text-gray-900 dark:text-white">
@@ -82,7 +85,7 @@ export const PersonalOverview = ({
           </div>
           <div className="flex flex-col items-end justify-center">
             {realm === Realm.Web3 && (
-              <WalletMultiButton className="bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200" />
+              <WalletMultiButton className="bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 scale-75 md:scale-100" />
             )}
           </div>
         </div>
