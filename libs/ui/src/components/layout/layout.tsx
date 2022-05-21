@@ -8,7 +8,6 @@ import {
   UsersIcon,
   XIcon,
 } from '@heroicons/react/outline';
-import { useRouter } from 'next/router';
 import { appendClasses } from '@tf/utils';
 import ThemeButton from '../theme-button/theme-button';
 import { RealmLogo, TFLogo } from '../logo';
