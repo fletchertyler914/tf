@@ -74,8 +74,8 @@ export const PersonalOverview = ({
   return (
     <div className="bg-white dark:bg-gray-800 shadow border border-gray-400 dark:border-gray-200 overflow-hidden sm:rounded-lg">
       <div className="px-2 py-5 sm:px-6">
-        <div className="flex">
-          <div className="flex flex-1 flex-col">
+        <div className="flex flex-col sm:flex-row">
+          <div className="flex flex-1 flex-col items-center sm:items-start">
             <h3 className="text-lg leading-6 font-bold text-gray-900 dark:text-white">
               Applicant Information
             </h3>
@@ -83,7 +83,7 @@ export const PersonalOverview = ({
               Personal details and application.
             </p>
           </div>
-          <div className="flex flex-col items-end justify-center">
+          <div className="flex flex-col items-center sm:items-end justify-center">
             {realm === Realm.Web3 && (
               <WalletMultiButton className="bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 scale-75 md:scale-100" />
             )}
