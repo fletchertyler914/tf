@@ -88,8 +88,8 @@ export function Layout({ children }: LayoutProps) {
             >
               <Dialog.Panel
                 className={appendClasses(
-                  realmStyles.backgroundColor,
-                  'relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4'
+                  'relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4',
+                  realmStyles.backgroundColor
                 )}
               >
                 <Transition.Child
@@ -143,8 +143,8 @@ export function Layout({ children }: LayoutProps) {
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         <div
           className={appendClasses(
-            'flex flex-col flex-grow pt-5 overflow-y-auto',
-            realmStyles.backgroundColor
+            realmStyles.backgroundColor,
+            'flex flex-col flex-grow pt-5 overflow-y-auto'
           )}
         >
           <div className="flex items-center flex-shrink-0 px-4">
@@ -169,8 +169,8 @@ export function Layout({ children }: LayoutProps) {
       <div className="md:pl-64 flex flex-col flex-1">
         <div
           className={appendClasses(
-            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white',
             realmStyles.backgroundColor,
+            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white'
           )}
         >
           {/* Menu Toggle */}
