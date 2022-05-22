@@ -29,11 +29,11 @@ export const Index = () => (
     </div>
 
     <div className="flex py-8 justify-center">
-      <div className="sm:mt-16 m-h-full overflow-hidden justify-between">
+      <div className="sm:mt-16 m-h-full justify-between">
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center">
           <Pill className="bg-blue-600 hover:bg-blue-800" realm={Realm.Web2} />
           <Pill
-            className="bg-red-600 hover:bg-red-800 scale-[60%]"
+            className="bg-red-600 hover:bg-red-800"
             realm={Realm.Web3}
           />
         </div>

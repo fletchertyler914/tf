@@ -14,12 +14,12 @@ export const Pill = ({ className, realm }: PillProps) => (
     <div
       className={appendClasses(
         className ?? '',
-        'sm:mx-8 p-2 h-40 w-80 flex items-center justify-center rounded-[90px] shadow hover:shadow-xl border border-transparent hover:skew-x-12 scale-[0.7] sm:scale-100'
+        'sm:mx-8 p-2 h-40 w-80 flex items-center justify-center rounded-[90px] shadow-xl border border-transparent hover:scale-[1.0] scale-[0.9] md:hover:scale-[110%] md:scale-100'
       )}
     >
       <RealmLogo
         className="w-20"
-        fill="dark:fill-black fill-white md:fill-black"
+        fill="dark:fill-black fill-white"
         realm={realm}
       />
     </div>

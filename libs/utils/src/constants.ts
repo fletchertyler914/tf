@@ -2,9 +2,9 @@ import { Realm, RealmStyle } from '@tf/data';
 
 export const REALM_STYLES: Record<Realm, RealmStyle> = {
   [Realm.None]: {
-    backgroundColor: 'dark:bg-black bg-white',
+    backgroundColor: 'dark:bg-yellow-600 bg-yellow-600',
     hoverBackgroundColor: 'dark:hover:bg-gray-800 hover:bg-gray-300',
-    color: '',
+    color: 'yellow-500',
     textColor: 'dark:text-white text-black',
     hoverTextColor: 'dark:hover:text-gray-300 hover:text-gray-800',
   },

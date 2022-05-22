@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { appendClasses } from '@tf/utils';
 import { Realm } from '@tf/data';
+import { useRouter } from 'next/router';
 
 export interface RealmLogoProps {
   className?: string;
@@ -64,10 +66,13 @@ export const RealmLogo = ({
   realm,
   showSwitcher,
 }: RealmLogoProps) => {
-  const stroke = fill === 'text-white' ? 'stroke-white' : 'stroke-black';
+  const { route } = useRouter();
   const otherRealm = realm === Realm.Web2 ? Realm.Web3 : Realm.Web2;
+  const href = route.replace(`/[realm]`, `/${otherRealm}`);
+  const stroke = fill === 'text-white' ? 'stroke-white' : 'stroke-black';
+
   return showSwitcher ? (
-    <Link href="/[realm]" as={`/${otherRealm}`} passHref>
+    <Link href={href} passHref>
       <a className="flex items-center">
         <RealmIcon className={className} fill={fill} realm={realm} />
         <RealmSwitchIcon stroke={stroke} />

@@ -77,10 +77,10 @@ export const PersonalOverview = ({
         <div className="flex flex-col sm:flex-row">
           <div className="flex flex-1 flex-col items-center sm:items-start">
             <h3 className="text-lg leading-6 font-bold text-gray-900 dark:text-white">
-              Applicant Information
+              Personal Overview
             </h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-800 dark:text-gray-300">
-              Personal details and application.
+              Personal details, professional experience/expectations, and a current Resume and Cover letter.
             </p>
           </div>
           <div className="flex flex-col items-center sm:items-end justify-center">

@@ -1,19 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import {
-  CalendarIcon,
-  FolderIcon,
-  HomeIcon,
-  MenuAlt2Icon,
-  UsersIcon,
-  XIcon,
-} from '@heroicons/react/outline';
-import { appendClasses } from '@tf/utils';
-import ThemeButton from '../theme-button/theme-button';
-import { RealmLogo, TFLogo } from '../logo';
-import { Realm } from '@tf/data';
 import Link from 'next/link';
-import { useRealm } from '@tf/hooks';
+import { Dialog, Transition } from '@headlessui/react';
+import { MenuAlt2Icon, XIcon } from '@heroicons/react/outline';
+import { appendClasses } from '@tf/utils';
+import { ThemeButton } from '../theme-button/theme-button';
+import { RealmLogo, TFLogo } from '../logo';
+import { useNavigation, useRealm } from '@tf/hooks';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -25,20 +18,43 @@ export interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { realm } = useRealm();
-  const realmBgColor = realm === Realm.Web2 ? 'bg-blue-500' : 'bg-red-500';
+  const { navigation } = useNavigation();
+  const { realm, realmStyles } = useRealm();
 
-  const navigation = [
-    { name: 'Home', href: '/', icon: HomeIcon, current: false },
-    {
-      name: 'About',
-      href: '#',
-      icon: UsersIcon,
-      current: true,
-    },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  ];
+  const NavigationLinks = () => (
+    <>
+      {navigation.map((item) => (
+        <Link
+          key={item.name}
+          href={{
+            pathname: item.href,
+            query: item.href.includes('[realm]') ? { realm } : null,
+          }}
+          passHref
+        >
+          <a
+            className={classNames(
+              item.current
+                ? 'bg-white text-black dark:bg-gray-900 dark:text-white pl-2 rounded-tl-md rounded-bl-md'
+                : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400 rounded-md mr-[0.5rem]',
+              'group flex items-center py-2 text-base font-medium'
+            )}
+          >
+            <item.icon
+              className={appendClasses(
+                item.current
+                  ? 'text-black dark:text-white'
+                  : 'text-white dark:text-black group-hover:text-black ml-2',
+                'mr-4 flex-shrink-0 h-6 w-6'
+              )}
+              aria-hidden="true"
+            />
+            {item.name}
+          </a>
+        </Link>
+      ))}
+    </>
+  );
 
   return (
     <div>
@@ -72,7 +88,7 @@ export function Layout({ children }: LayoutProps) {
             >
               <Dialog.Panel
                 className={appendClasses(
-                  realmBgColor,
+                  realmStyles.backgroundColor,
                   'relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4'
                 )}
               >
@@ -107,31 +123,7 @@ export function Layout({ children }: LayoutProps) {
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
-                    {navigation.map((item) => (
-                      <Link key={item.name} href={item.href} passHref>
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
-                              : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                          )}
-                        >
-                          <item.icon
-                            className={appendClasses(
-                              item.current
-                                ? 'text-black dark:text-white'
-                                : 'text-white dark:text-black group-hover:text-black',
-                              'mr-4 flex-shrink-0 h-6 w-6'
-                            )}
-                            aria-hidden="true"
-                          />
-                          {item.name}
-                        </a>
-                      </Link>
-                    ))}
+                    <NavigationLinks />
                   </nav>
                 </div>
                 <div className="flex px-4 py-2 w-full justify-start">
@@ -151,8 +143,8 @@ export function Layout({ children }: LayoutProps) {
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         <div
           className={appendClasses(
-            realmBgColor,
-            'flex flex-col flex-grow pt-5 overflow-y-auto'
+            'flex flex-col flex-grow pt-5 overflow-y-auto',
+            realmStyles.backgroundColor
           )}
         >
           <div className="flex items-center flex-shrink-0 px-4">
@@ -162,32 +154,8 @@ export function Layout({ children }: LayoutProps) {
             />
           </div>
           <div className="mt-5 flex-1 flex flex-col">
-            <nav className="flex-1 px-2 pb-4 space-y-1">
-              {navigation.map((item) => (
-                <Link key={item.name} href={item.href} passHref>
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-white text-black dark:bg-gray-800 dark:text-white'
-                        : 'dark:text-gray-800 hover:bg-gray-200 text-gray-200 hover:text-black dark:hover:bg-gray-400',
-                      'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                    )}
-                  >
-                    <item.icon
-                      className={appendClasses(
-                        item.current
-                          ? 'text-black dark:text-white'
-                          : 'text-white dark:text-black group-hover:text-black',
-                        'mr-4 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
-                </Link>
-              ))}
+            <nav className="flex-1 pl-2 pb-4 space-y-1">
+              <NavigationLinks />
             </nav>
             <div className="flex p-4">
               <p className="font-bold mr-2">Theme:</p>
@@ -201,8 +169,8 @@ export function Layout({ children }: LayoutProps) {
       <div className="md:pl-64 flex flex-col flex-1">
         <div
           className={appendClasses(
-            realmBgColor,
-            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white'
+            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white',
+            realmStyles.backgroundColor,
           )}
         >
           {/* Menu Toggle */}
