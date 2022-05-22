@@ -8,7 +8,9 @@ export interface CalendlyProps {
 }
 
 export const Calendly = ({ url, styles }: CalendlyProps) => (
-  <InlineWidget url={url} styles={styles} />
+  <div className="pt-6">
+    <InlineWidget url={url} styles={styles} />
+  </div>
 );
 
 export default Calendly;

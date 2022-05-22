@@ -7,6 +7,7 @@ import { appendClasses } from '@tf/utils';
 import { ThemeButton } from '../theme-button/theme-button';
 import { RealmLogo, TFLogo } from '../logo';
 import { useNavigation, useRealm } from '@tf/hooks';
+import { Realm } from '@tf/data';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -19,7 +20,7 @@ export interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { navigation } = useNavigation();
-  const { realm, realmStyles } = useRealm();
+  const { lastRealm, realm, realmStyles } = useRealm();
 
   const NavigationLinks = () => (
     <>
@@ -28,7 +29,7 @@ export function Layout({ children }: LayoutProps) {
           key={item.name}
           href={{
             pathname: item.href,
-            query: item.href.includes('[realm]') ? { realm } : null,
+            query: item.href.includes('[realm]') ? { realm: lastRealm } : null,
           }}
           passHref
         >
@@ -122,7 +123,7 @@ export function Layout({ children }: LayoutProps) {
                   />
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
-                  <nav className="px-2 space-y-1">
+                  <nav className="pl-2 space-y-1">
                     <NavigationLinks />
                   </nav>
                 </div>
@@ -185,18 +186,20 @@ export function Layout({ children }: LayoutProps) {
 
           <div className="flex-1 px-4 flex justify-end">
             <div className="ml-auto flex items-center md:ml-6">
-              <RealmLogo
-                className="w-10"
-                fill="dark:fill-black fill-white md:fill-black"
-                realm={realm}
-                showSwitcher={true}
-              />
+              {realm !== Realm.None && (
+                <RealmLogo
+                  className="w-10"
+                  fill="dark:fill-black fill-white md:fill-black"
+                  realm={realm}
+                  showSwitcher={true}
+                />
+              )}
             </div>
           </div>
         </div>
 
         <main>
-          <div className="pb-6">
+          <div className="pb-6 overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400">
               {children}
             </div>

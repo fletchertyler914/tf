@@ -40,7 +40,7 @@ const defaultNavigation: NavigationItem[] = [
   },
   {
     name: 'Calendar',
-    href: '/calendar',
+    href: '/[realm]/calendar',
     icon: CalendarIcon,
     current: false,
   },

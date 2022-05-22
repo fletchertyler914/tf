@@ -5,7 +5,7 @@ export enum Realm {
 }
 
 export interface UseRealm {
-  lasRealm?: Realm;
+  lastRealm?: Realm;
   realm: Realm;
   realmStyles: RealmStyle;
   setRealm: (realm: Realm) => void;

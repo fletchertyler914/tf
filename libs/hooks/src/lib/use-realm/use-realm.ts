@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react';
 
 export function useRealm(): UseRealm {
   const [realm, setRealm] = useState<Realm>(Realm.None);
-  const [lasRealm, setLastRealm] = useState<Realm | undefined>(undefined);
+  const [lastRealm, setLastRealm] = useState<Realm | undefined>(undefined);
   const [realmStyles, setRealmStyles] = useState<RealmStyle>(
     REALM_STYLES[Realm.None]
   );
@@ -23,7 +23,7 @@ export function useRealm(): UseRealm {
     }
   }, [routeRealm]);
 
-  return { realm, lasRealm, setRealm, realmStyles };
+  return { realm, lastRealm, setRealm, realmStyles };
 }
 
 export default useRealm;
