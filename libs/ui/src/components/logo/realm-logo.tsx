@@ -69,7 +69,7 @@ export const RealmLogo = ({
   const { route } = useRouter();
   const otherRealm = realm === Realm.Web2 ? Realm.Web3 : Realm.Web2;
   const href = route.replace(`/[realm]`, `/${otherRealm}`);
-  const stroke = fill === 'text-white' ? 'stroke-white' : 'stroke-black';
+  const stroke = 'dark:stroke-black stroke-white md:stroke-black';
 
   return showSwitcher ? (
     <Link href={href} passHref>

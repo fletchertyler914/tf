@@ -1,8 +1,7 @@
 import { Calendly } from '@tf/ui';
 
 const styles = {
-  height: 'calc(100vh - 63px)',
-  // margin: '-28px',
+  height: 'calc(100vh - 63px)'
 };
 
 export const Calendar = () => (

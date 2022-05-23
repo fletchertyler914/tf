@@ -3,8 +3,7 @@ import { appendClasses } from '@tf/utils';
 import { useRealm } from '@tf/hooks';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Realm } from '@tf/data';
-import { RealmStyle } from 'libs/data/src';
+import { Realm, RealmStyle } from '@tf/data';
 
 interface Attachment {
   name: string;
@@ -79,8 +78,8 @@ export const PersonalOverview = ({
             <h3 className="text-lg leading-6 font-bold text-gray-900 dark:text-white">
               Personal Overview
             </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-800 dark:text-gray-300">
-              Personal details, professional experience/expectations, and a current Resume and Cover letter.
+            <p className="mt-1 max-w-2xl text-sm text-gray-800 dark:text-gray-300 text-center sm:text-left">
+              Personal details, professional experience and expectations, and a current resume and cover letter.
             </p>
           </div>
           <div className="flex flex-col items-center sm:items-end justify-center">
