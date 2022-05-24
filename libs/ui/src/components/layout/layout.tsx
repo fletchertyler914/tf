@@ -171,7 +171,7 @@ export function Layout({ children }: LayoutProps) {
         <div
           className={appendClasses(
             realmStyles.backgroundColor,
-            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md dark:border-none border-b border-gray-400 md:bg-white'
+            'sticky top-0 z-10 flex-shrink-0 flex h-16 shadow-md md:border-b border-gray-300 dark:border-white md:bg-white dark:md:bg-gray-900 '
           )}
         >
           {/* Menu Toggle */}
@@ -189,7 +189,7 @@ export function Layout({ children }: LayoutProps) {
               {realm !== Realm.None && (
                 <RealmLogo
                   className="w-10"
-                  fill="dark:fill-black fill-white md:fill-black"
+                  fill="dark:fill-black dark:md:fill-white fill-white md:fill-black"
                   realm={realm}
                   showSwitcher={true}
                 />
